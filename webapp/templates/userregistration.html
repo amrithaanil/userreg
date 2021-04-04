@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <script>
+      function validation()
+      {	
+        var regularExpression =new RegExp("^[a-z]+(\.[a-z0-9_\+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.([a-z]{2,4})$");
+
+        if(f1.name.value=="")
+			  {
+			    alert('name cannot be null');
+		      f1.name.focus();
+			    return false;
+        }
+        if(f1.email.value=="")
+			  {
+			    alert('email cannot be null');
+		      f1.email.focus();
+			    return false;
+        }
+        if (!regularExpression.test(f1.email.value))
+  		  {
+          alert("Enter a valid ID.For example:'name@gmail.com'");
+          f1.email.focus();
+ 			    return false;
+ 		    }
+        if(f1.address.value=="")
+			  {
+			    alert('address cannot be null');
+		      f1.address.focus();
+			    return false;
+        }
+        if(f1.phone.value=="")
+			  {
+			    alert('phone cannot be null');
+		      f1.phone.focus();
+			    return false;
+        }
+        if(isNaN(f1.phone.value))
+	      {
+		      alert('Enter Phone number in numeric format.');
+		      f1.phone.focus();
+          return false;
+		    }
+        if(f1.phone.value.length!=10)
+			  {
+			    alert('Phone Number should be 10');
+		      f1.phone.focus();
+			    return false;
+        }
+        return true;
+      }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/hospital.css' %}">
+</head>
+<body>
+  
+<div class="container">
+  <img src="{% static 'images/img1.jpg' %}" height="200px" width="550px">
+  <form action="/userregister/" name="f1" method="POST">
+    {% csrf_token %}
+    <label for="fname">Name</label>
+    <input type="text" name="name" placeholder="name..">
+
+    <label for="">Email</label>
+    <input type="text" name="email" placeholder="">
+
+    <label for="subject">Address</label>
+    <textarea name="address" placeholder="" style="height:150px"></textarea>
+
+    <label for="">Phone</label>
+    <input type="text" name="phone" placeholder="">
+
+    <input type="submit" value="Submit" onclick="return validation();">
+  </form>
+</div>
+
+</body>
+</html>

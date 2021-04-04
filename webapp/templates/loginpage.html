@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/form1.css' %}">
+    <style>
+            .contactbody{
+                background:url('{% static "images/img1.jpg" %}');
+                background-size: cover;
+                background-attachment: fixed;
+                /* height:700px; */
+            }
+    </style>
+    	<script>
+        function validation()
+        {
+          if(f1.uname.value == "")
+          {
+            alert("Enter Username.")
+            f1.uname.focus()
+            return false;
+          }
+          if(f1.pwd.value == "")
+          {
+            alert("Enter Password.")
+            f1.pwd.focus()
+            return false;
+          }
+          return true;
+        }
+      </script>
+</head>
+<div style="width: 101.3%;margin-left: -0.7%;margin-top: -0.7%;">
+  {% include "public_header.html" %}
+</div>
+<body class="contactbody">  
+        <div class="wrap">
+        <form class="form" name="f1" method="POST" action="/save_login/" style="margin-top: 5%;height: 350px;margin-left: 30%;width: 35%;">
+            {% csrf_token %}
+          <input type="text" class="name entry " placeholder="Username" name="uname" style="margin-top: 20%;" />
+          <input type="password" class="name entry" placeholder="Password" name="pwd"/>
+          <input type="submit" class="submit entry" onclick="return validation()">
+        </form>  
+        <div class="shadow"></div>
+      </div>
+</body>
+</html>
